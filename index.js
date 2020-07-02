@@ -21,7 +21,7 @@ app.use('/products', productRouter)
 
 productRouter.get('/', async (req, res, next) => {
     try{
-        const products = await Product.find({}, { name: 1, price: 1});
+        const products = await Product.find({}, { name: 1, price: 1, picture: 1});
         res.json(products);
     } catch (err) {
         console.log(err);
