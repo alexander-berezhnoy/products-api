@@ -1,4 +1,4 @@
-const Product = require('../models/products')
+const Product = require('../models/product');
 
 module.exports.create = product => Product.create(product);
 module.exports.deleteById = id => Product.findByIdAndDelete(id)
