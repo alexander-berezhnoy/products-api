@@ -23,8 +23,8 @@ module.exports.createProduct = async (req, res, next) => {
     try {
         const isProductExists = await productService.find({name: req.body.name});
         if (isProductExists && isProductExists.length) throw new Error('Product exists');
-        const newProduct = await productService.create(req.body);
-        res.json(newProduct);
+        await productService.create(req.body);
+        res.json({message: 'Product was successfully created'});
     } catch (err) {
         if (err.message === 'Product exists'){
             res.status(400).json({ errors: [{
@@ -38,8 +38,8 @@ module.exports.createProduct = async (req, res, next) => {
 module.exports.updateProduct = async (req, res, next) => {
     try {
         const {id} = req.params;
-        const updatedProduct = await productService.updateById(id, req.body);
-        res.json(updatedProduct);
+        await productService.updateById(id, req.body);
+        res.json({ message: 'Product was successfully updated' });
     } catch (err) {
         next(err);
     }
@@ -48,8 +48,8 @@ module.exports.updateProduct = async (req, res, next) => {
 module.exports.deleteProduct = async (req, res, next) => {
     try {
         const {id} = req.params;
-        const deletedProduct = await productService.deleteById(id);
-        res.json(deletedProduct);
+        await productService.deleteById(id);
+        res.json({message: 'Product was successfully deleted'});
     } catch (err) {
         next(err);
     }
