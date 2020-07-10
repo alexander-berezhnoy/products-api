@@ -29,7 +29,7 @@ module.exports.createProduct = async (req, res, next) => {
         if (err.message === 'Product exists'){
             res.status(400).json({ errors: [{
                     field: "name",
-                    error: "Name exists"
+                    error: "The product with this name already exists"
                 }]})
         } else next(err);
     }   
